@@ -57,9 +57,11 @@ from utils.torch_utils import select_device, smart_inference_mode
 def ON_EVENT_LBUTTONDOWN(event, y, x, flags, param):
     if event == cv2.EVENT_LBUTTONDOWN:
         for i in range(len(param.x1)):
-            kin.get_Pos(param.x1[i], param.x2[i])
-        if(param.client_socket is not None):
-            param.client_socket.sendall(generate_camera_values("1",str(len(param.x1)), "-9", "1", "0", "-80").encode())
+            if param.x1[i][0] <= y and y <= param.x2[i][0] and param.x1[i][1] <= x and x <= param.x2[i][1]:
+                x, y, z = kin.get_Pos(param.x1[i], param.x2[i])
+                print(x,y,z)
+                if(param.client_socket is not None):
+                    param.client_socket.sendall(generate_camera_values("1",str(len(param.x1)), format(x, '.1f'), format(y, '.1f'), format(z, '.1f'),  "-90").encode())
         
 def generate_camera_values(model_class, obj_cnt, x, y, z, rotation):
     values = "0000startM"+model_class+"#"+obj_cnt+"O"+x+"#"+y+"#"+z+"#"+rotation+"#stop"

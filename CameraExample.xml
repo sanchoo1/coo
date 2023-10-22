@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Program>
+    <Header RobotName="igus REBEL-6DOF" RobotType="REBEL-6DOF-01" GripperType="" Software="iRC V902-13-037" VelocitySetting="0" />
+    <Joint AbortCondition="False" Nr="1" Source="Numerical" velPercent="40" acc="40" smooth="20" a1="-90" a2="-40" a3="-55" a4="0" a5="-75" a6="0" e1="0" e2="0" e3="0" Descr="Start position" />
+    <Store Nr="2" Type="position" Value="4.9 403.7 -2.1 0 0 -180" ValueJoints="4.9 403.69 2.13 0 0 0 0 0 0" Name="targetpos" Descr="Declare object position variable" />
+    <Store Nr="3" Type="number" Value="0" Name="modelclass" Descr="Declare object model variable" />
+    <Loop Nr="4" Mode="DIn" Condition="modelclass &gt; 0 " Descr="" />
+    <Camera Nr="5" CameraName="MyCamera" CameraType="IFMO2D" VarTargetPos="targetpos" VarModelClass="modelclass" Descr="Read object info from camera" />
+    <EndLoop Nr="6" Descr="" />
+    <If Nr="7" Condition="modelclass &gt; -1" Descr="Check whether an object was recognized" />
+    <Store Nr="8" Type="position" Value="current" Name="currentposition" Descr="" />
+    <MathOperator Nr="9" Function="set" FirstOperand="targetpos.a" SecondOperand="currentposition.a" Descr="" />
+    <MathOperator Nr="10" Function="set" FirstOperand="targetpos.b" SecondOperand="currentposition.b" Descr="" />
+    <MathOperator Nr="11" Function="set" FirstOperand="targetpos.c" SecondOperand="currentposition.c" Descr="" />
+    <Linear AbortCondition="False" Nr="12" Source="Variable" vel="100" acc="40" smooth="0" VariableName="targetpos" Descr="" />
+    <Else Nr="13" Descr="" />
+    <EndIf Nr="14" Descr="" />
+</Program>
