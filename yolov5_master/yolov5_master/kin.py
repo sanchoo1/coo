@@ -59,7 +59,7 @@ def p_2_w(x, y, z, param : Params):
     d_world_coordinate = np.dot(np.linalg.inv(param.d_intrinsics),float(z) * color_pixel_coordinate)
     return d_world_coordinate
 
-""" def on_EVENT_LBUTTONDOWN(event, y, x, flags, param):
+def on_EVENT_LBUTTONDOWN(event, y, x, flags, param):
     if event == cv2.EVENT_LBUTTONDOWN:
         print(x, y)
         # print(param[x][y])
@@ -69,7 +69,7 @@ def p_2_w(x, y, z, param : Params):
         y = (y -256)/367.816 * z
         print(x,y,z)
         cv2.imwrite(path + str(counter) + '.png', get_last_rbg())
-         """
+
 def get_Pos(x1, x2):
     x = int((x1[0] + x2[0]) / 2)
     y = int((x1[1] + x2[1]) / 2)
@@ -85,7 +85,7 @@ cv2.namedWindow("depth")
 path = 'D:\\Desktop\\photocoooo\\'
 os.makedirs(path, exist_ok = True)
 
-""" while 1:
+while 1:
     inf_frame = get_last_inf()
     success, img = cap.read()
     img = cv2.flip(img, 1)
@@ -94,4 +94,3 @@ os.makedirs(path, exist_ok = True)
     counter = 1
     cv2.setMouseCallback("output", on_EVENT_LBUTTONDOWN, get_last_depth())
     cv2.waitKey(1)
-     """
