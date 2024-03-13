@@ -97,8 +97,8 @@ while 1:
                 # v_f = coord[1,0]
            
                 temp = d_frame.astype(np.uint8)
-                x = int(u_f) + 16
-                y = int(v_f) - 23
+                x = int(u_f)  + 30
+                y = int(v_f)  - 20
                 z = temp[row][col]
                 # print(str(x) + ' ' + str(y) + ' ' + str(z))
                 if not (x < 0 or x > 1079 or y > 1910 or y < 0):

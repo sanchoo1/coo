@@ -115,7 +115,7 @@ def run(
     # Load model
     device = select_device(device)
     model = DetectMultiBackend(weights, device=device, dnn=dnn, data=data, fp16=half)
-    # stride, names, pt = model.stride, model.names, model.pt
+    #stride, names, pt = model.stride, model.names, model.pt
     stride, names, pt = 8, model.names, model.pt
     imgsz = check_img_size(imgsz, s=stride)  # check image size
 
@@ -270,7 +270,7 @@ def run(
 def parse_opt():
     parser = argparse.ArgumentParser()
     parser.add_argument('--weights', nargs='+', type=str, default=ROOT / 'best.pt', help='model path or triton URL')
-    parser.add_argument('--source', type=str, default='2', help='file/dir/URL/glob/screen/0(webcam)')
+    parser.add_argument('--source', type=str, default='1', help='file/dir/URL/glob/screen/0(webcam)')
     parser.add_argument('--data', type=str, default=ROOT / 'data/coco128.yaml', help='(optional) dataset.yaml path')
     parser.add_argument('--imgsz', '--img', '--img-size', nargs='+', type=int, default=[424,512], help='inference size h,w')
     parser.add_argument('--conf-thres', type=float, default=0.25, help='confidence threshold')
@@ -306,7 +306,7 @@ def parse_opt():
 
 HOST = '127.0.0.1'  # Change to the desired host IP
 PORT = 50010       # Change to the desired port number
-CONNECT = True
+CONNECT = False
 def main(opt, connect):
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as server_socket:
         my_param = kin.Params()
